@@ -1,5 +1,48 @@
 # Receipt Processor
 
+
+## Setup with Docker 
+
+Clone this repository or copy all the files into a new directory.
+Open a terminal and navigate to the project directory.
+
+Build the Docker image:
+```
+docker build -t receipt-processor
+```
+
+Run the Docker container:
+```
+Copydocker run -p 5002:5002 receipt-processor
+```
+
+
+The server will start running and will be accessible on localhost
+> http://localhost:5002
+
+## Testing
+### Endpoint: POST /receipts/process
+You can use any json file under /examples  using ```-d``` 
+```
+curl -X POST -H "Content-Type: application/json" -d @examples/big-target.json  http://localhost:5002/receipts/process
+```
+sample output
+```json
+{"id":"99dd3e51-cad7-479b-9343-cd3bc57e1d64"}
+```
+
+### Endpoint: GET /receipts/{id}/points
+Will only accept a valid id 
+```
+curl -X GET  http://localhost:5002/receipts/99dd3e51-cad7-479b-9343-cd3bc57e1d64/points
+```
+
+Corresponding Output
+```json
+{"points":28}
+```
+## CONTEXT
+
 Build a webservice that fulfils the documented API. The API is described below. A formal definition is provided 
 in the [api.yml](./api.yml) file, but the information in this README is sufficient for completion of this challenge. We will use the 
 described API to test your solution.
