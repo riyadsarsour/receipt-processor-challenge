@@ -8,12 +8,12 @@ Open a terminal and navigate to the project directory.
 
 Build the Docker image:
 ```
-docker build -t receipt-processor
+docker build -t processor .
 ```
 
 Run the Docker container:
 ```
-Copydocker run -p 5002:5002 receipt-processor
+docker run -d -p 5002:5002 --name processor-container processor
 ```
 
 
